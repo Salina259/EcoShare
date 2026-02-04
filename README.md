@@ -7,7 +7,7 @@ Sharing, exchange, and building community
 ## Team Members
 - Salina Gurung
 - Nirjala Rai
-- Hira Magar
+- Hira Gaha Magar
 - Aaysuh Shrestha
 
 ## Technologies
