@@ -17,4 +17,4 @@ Sharing, exchange, and building community
 - DevOps: Docker, GitHub Actions
 
 ## Project Status
-Sprint 1 – Project setup and plannin
+Sprint 1 – Project setup and planning
