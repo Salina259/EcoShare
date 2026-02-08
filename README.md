@@ -107,26 +107,23 @@ Eco Share has been designed with ethical and usability considerations in mind:
 
 | Team Member | Role                         | Responsibilities                                                          |
 | ----------- | ---------------------------- | ------------------------------------------------------------------------- |
-| [Your Name] | Project Manager / Scrum Lead | Coordinates sprints, manages GitHub Project board, oversees documentation |
-| [Member 2]  | Frontend Developer           | PUG templates, UI layout, usability and accessibility                     |
-| [Member 3]  | Backend Developer            | Express routes, business logic, database integration                      |
-| [Member 4]  | DevOps / CI Lead             | Docker setup, environment configuration, CI/CD pipeline                   |
+| [Salina] | Project Manager / Scrum Lead | Coordinates sprints, manages GitHub Project board, oversees documentation |
+| [Nirjala]  | Frontend Developer           | PUG templates, UI layout, usability and accessibility                     |
+| [Hira]  | Backend Developer            | Express routes, business logic, database integration                      |
+| [Aayush]  | DevOps / CI Lead             | Docker setup, environment configuration, CI/CD pipeline                   |
+
+While roles were assigned to support workflow, all team members collaborate and contribute across the project.
+
+## Development Workflow
+
+The project follows an agile Scrum workflow:
+
+-Work is organised into sprints
+
+-Progress is tracked using a GitHub Project Kanban board
+
+-Weekly stand-ups are conducted during lab sessions
+
+-Code is reviewed at scheduled assessment checkpoints
 
 
-
-
-
-## Team Members
-- Salina Gurung
-- Nirjala Rai
-- Hira Gaha Magar
-- Aaysuh Shrestha
-
-## Technologies
-- Frontend: HTML, CSS, JavaScript, PUG
-- Backend: Node.js, Express.js
-- Database: MySQL
-- DevOps: Docker, GitHub Actions
-
-## Project Status
-Sprint 1 – Project setup and planning
