@@ -107,10 +107,10 @@ Eco Share has been designed with ethical and usability considerations in mind:
 
 | Team Member | Role                         | Responsibilities                                                          |
 | ----------- | ---------------------------- | ------------------------------------------------------------------------- |
-| [Salina] | Project Manager / Scrum Lead | Coordinates sprints, manages GitHub Project board, oversees documentation |
-| [Nirjala]  | Frontend Developer           | PUG templates, UI layout, usability and accessibility                     |
-| [Hira]  | Backend Developer            | Express routes, business logic, database integration                      |
-| [Aayush]  | DevOps / CI Lead             | Docker setup, environment configuration, CI/CD pipeline                   |
+| Salina | Project Manager / Scrum Lead | Coordinates sprints, manages GitHub Project board, oversees documentation |
+| Nirjala  | Frontend Developer           | PUG templates, UI layout, usability and accessibility                     |
+| Hira  | Backend Developer            | Express routes, business logic, database integration                      |
+| Aayush  | DevOps / CI Lead             | Docker setup, environment configuration, CI/CD pipeline                   |
 
 While roles were assigned to support workflow, all team members collaborate and contribute across the project.
 
