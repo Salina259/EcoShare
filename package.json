@@ -1,0 +1,13 @@
+{
+  "name": "ecoshare",
+  "version": "1.0.0",
+  "description": "Eco Share - community sharing app for belongings/items",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "pug": "^3.0.2"
+  }
+}
