@@ -19,7 +19,8 @@ Eco Share supports this theme by encouraging users to:
 
 ## Project features
 To ensure maintainability, usability, and user safety, Eco Share focuses exclusively on non-perishable belongings and reusable items.
-#Included:
+
+## Included:
 
 -Clothing
 
@@ -33,7 +34,7 @@ To ensure maintainability, usability, and user safety, Eco Share focuses exclusi
 
 -Other reusable belongings
 
-#Excluded:
+## Excluded:
 
 -Food and perishable goods
 
@@ -41,7 +42,7 @@ To ensure maintainability, usability, and user safety, Eco Share focuses exclusi
 
 -Hazardous materials
 
-#Core Features:
+## Core Features:
 
 -User registration and login
 
@@ -56,7 +57,7 @@ To ensure maintainability, usability, and user safety, Eco Share focuses exclusi
 -Basic validation and access control
 
 ## Technologies Used
-#Frontend:
+## Frontend:
 
 -HTML
 
@@ -66,7 +67,7 @@ To ensure maintainability, usability, and user safety, Eco Share focuses exclusi
 
 -PUG templating engine
 
-#Backend:
+## Backend:
 
 -Node.js
 
@@ -74,7 +75,7 @@ To ensure maintainability, usability, and user safety, Eco Share focuses exclusi
 
 -MySQL
 
-#DevOps & CI/CD:
+## DevOps & CI/CD:
 
 -Docker
 
@@ -84,11 +85,33 @@ To ensure maintainability, usability, and user safety, Eco Share focuses exclusi
 
 -GitHub Actions
 
-#Project Management:
+## Project Management:
 
 -GitHub Projects (Kanban board)
 
 -Scrum methodology with iterative sprints
+
+## Ethics, Security & Usability Considerations
+
+Eco Share has been designed with ethical and usability considerations in mind:
+
+-User data is minimised and handled securely
+
+-Only registered users can create or request listings
+
+-Users can only edit or delete their own items
+
+-The interface is designed to be simple, accessible, and inclusive
+
+-The platform avoids misleading environmental claims and focuses on realistic reuse benefits
+
+| Team Member | Role                         | Responsibilities                                                          |
+| ----------- | ---------------------------- | ------------------------------------------------------------------------- |
+| [Your Name] | Project Manager / Scrum Lead | Coordinates sprints, manages GitHub Project board, oversees documentation |
+| [Member 2]  | Frontend Developer           | PUG templates, UI layout, usability and accessibility                     |
+| [Member 3]  | Backend Developer            | Express routes, business logic, database integration                      |
+| [Member 4]  | DevOps / CI Lead             | Docker setup, environment configuration, CI/CD pipeline                   |
+
 
 
 
