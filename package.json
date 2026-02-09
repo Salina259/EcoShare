@@ -1,13 +1,20 @@
 {
-  "name": "ecoshare",
+  "name": "sd2-example",
   "version": "1.0.0",
-  "description": "Eco Share - community sharing app for belongings/items",
-  "main": "src/app.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node src/app.js"
+    "start": "supervisor index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2",
-    "pug": "^3.0.2"
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.0",
+    "sqlite3": "^5.0.2",
+    "supervisor": "^0.12.0"
   }
 }
