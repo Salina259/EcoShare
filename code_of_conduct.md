@@ -1,19 +1,21 @@
-# Code of Conduct – EcoShare
+# Code of Conduct – Eco Sharing Sprint 1
 
 ## Communication
-- Be respectful and polite when communicating with group members.
-- Respond to messages within a reasonable time.
-
+- All group members will communicate respectfully and politely during meetings, discussions, and online messages.
+- Everyone’s ideas and opinions will be listened to and considered.
+  
 ## Contribution
 - All members should contribute fairly to the EcoShare project.
 - Complete agreed tasks or inform the group early if there are any issues.
 
 ## Meetings
-- Attend meetings and lab sessions where possible.
-- Inform the group in advance if unable to attend.
-
+- Members should attend scheduled meetings, including lab sessions and group discussions.
+- Our group met after class for 2 hours to plan Sprint 1 tasks, and all members participated actively.
+  
 ## GitHub Usage
 - Use GitHub to manage tasks and track contributions clearly.
+- Members will commit their tasks and update the repository responsibly.
+
 
 ## Conflict Resolution
 - Discuss problems calmly within the group.
