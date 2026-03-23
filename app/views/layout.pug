@@ -1,0 +1,127 @@
+//- views/layout.pug
+//- Main reusable layout for Eco Share pages
+//- This keeps the same header, font, colours, and spacing across all pages
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title #{title} - Eco Share
+
+    style.
+      /* Base page styling based on your Sprint 2 wireframe style */
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #e8f5e9;
+        color: #1f1f1f;
+      }
+
+      /* Header bar */
+      .navbar {
+        background-color: #2e7d32;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 24px;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .profile-text {
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      /* Main content wrapper */
+      .container {
+        max-width: 1000px;
+        margin: 30px auto;
+        padding: 0 20px 40px;
+      }
+
+      .page-title {
+        color: #1b5e20;
+        margin-bottom: 20px;
+        font-size: 30px;
+      }
+
+      .page-subtitle {
+        margin-top: -8px;
+        margin-bottom: 24px;
+        color: #444;
+      }
+
+      /* Card styling */
+      .card {
+        background: #ffffff;
+        border: 1px solid #c8e6c9;
+        border-radius: 10px;
+        padding: 18px;
+        margin-bottom: 18px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      .card h2, .card h3 {
+        margin-top: 0;
+        color: #1b5e20;
+      }
+
+      .info-row {
+        margin: 8px 0;
+        line-height: 1.6;
+      }
+
+      /* Button styling inspired by the wireframes */
+      .button {
+        display: inline-block;
+        background-color: #2e7d32;
+        color: white;
+        text-decoration: none;
+        padding: 10px 16px;
+        border-radius: 6px;
+        margin-top: 12px;
+        font-weight: bold;
+      }
+
+      .button:hover {
+        background-color: #1b5e20;
+      }
+
+      /* Grid layout for users list */
+      .user-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 18px;
+      }
+
+      /* Small tag style for location */
+      .tag {
+        display: inline-block;
+        background-color: #dcedc8;
+        color: #1b5e20;
+        padding: 6px 10px;
+        border-radius: 20px;
+        font-size: 14px;
+        margin-top: 8px;
+      }
+
+      /* Back link area */
+      .back-area {
+        margin-top: 20px;
+      }
+
+  body
+    //- Top shared header used on every page
+    header.navbar
+      .logo Eco Share
+      .profile-text Profile
+
+    //- Page content from child templates will appear here
+    main.container
+      block content
