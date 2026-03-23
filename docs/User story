@@ -1,0 +1,99 @@
+Guest User Stories
+US-01: Register Account
+Priority: High (MVP)
+As a guest, I want to register an account so that I can borrow and lend items.
+Acceptance Criteria:
+•	Guests can enter their name, email, and password
+•	Email must be unique
+•	Account is created successfully
+
+US-02: Login
+Priority: High (MVP)
+As a guest, I want to log in so that I can access my account and platform features.
+Acceptance Criteria:
+•	Guests can log in using valid credentials
+•	Invalid credentials show an error message
+•	Successful login redirects to home page
+
+US-03: Browse Items
+Priority: High (MVP)
+As a guest, I want to browse available items so that I can see what items are available before registering.
+Acceptance Criteria:
+•	Guests can view a list of available items
+•	Basic item details are visible
+•	Borrowing requires a login
+
+US-04: View Item Details
+Priority: High (MVP)
+As a guest or registered user, I want to view detailed information about an item so that I can decide whether to request it.
+Acceptance Criteria:
+•	Item details include description and availability
+•	Item owner information is displayed
+
+Registered User Stories
+US-05: Create Item Listing
+Priority: High (MVP)
+As a registered user, I want to create an item listing so that others can borrow my item.
+Acceptance Criteria:
+•	User enters item title, description, category, and availability
+•	Listing is saved successfully
+•	Listing appears in browse items
+
+US-06: Request to Borrow Item
+Priority: High (MVP)
+As a registered user, I want to request to borrow an item so that I can use it for a specific time period.
+Acceptance Criteria:
+•	User selects borrow start and end dates
+•	User cannot request their own item
+•	Request status is set to “Pending.”
+
+US-07: View Borrow Request Status
+Priority: High (MVP)
+As a registered user, I want to view the status of my borrow requests so that I know whether they are approved or pending.
+Acceptance Criteria:
+•	User can view request status
+•	Status updates when approved or rejected
+
+US-08: Approve or Reject Borrow Request
+Priority: High (MVP)
+As an item owner, I want to approve or reject borrow requests so that I can control who borrows my item.
+Acceptance Criteria:
+•	Owner can view incoming requests
+•	Owner can approve or reject a request
+•	Request status updates correctly
+
+US-09: View Pickup Details
+Priority: Medium (MVP)
+As a borrower, I want to view confirmed pickup details so that I know when and where to collect the item.
+Acceptance Criteria:
+•	Pickup details are visible only after approval
+•	Details are agreed through in-app messaging
+
+US-10: In-App Messaging
+Priority: Medium (MVP)
+As a registered user, I want to message another user so that pickup details can be discussed safely.
+Acceptance Criteria:
+•	Messaging is enabled after request approval
+•	Messages remain within the platform
+
+US-11: Report User or Listing
+Priority: Medium
+As a registered user, I want to report a user or listing so that unsafe behaviour can be reviewed.
+Acceptance Criteria:
+•	User can submit a report with a reason
+•	Report is stored for admin review
+
+Admin User Stories
+US-12: Admin Login
+Priority: Medium
+As an admin, I want to log in so that I can manage the platform securely.
+Acceptance Criteria:
+•	Admin login requires valid credentials
+•	Admin-only access is enforced
+
+US-13: Review Reports
+Priority: Medium
+As an admin, I want to review reported users or listings so that appropriate moderation action can be taken.
+Acceptance Criteria:
+•	Admin can view submitted reports
+•	Admin can take action on reports
