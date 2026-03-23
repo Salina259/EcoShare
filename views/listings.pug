@@ -5,8 +5,16 @@ block content
     h2.page-title Browse Items
 
     .search-bar
-      input(type='text', placeholder='Search items...')
-      button(type='button') Search
+      form.inline-form(action='/listings', method='get')
+        select(name='tag')
+          option(value='') All tags
+          if availableTags && availableTags.length
+            each t in availableTags
+              option(value=t.name, selected=selectedTag === t.name)= t.name
+        button(type='submit') Filter by Tag
+      if selectedTag
+        a.btn(href='/listings') Clear Filter
+      a.btn(href='/listings/new') + New Listing
 
     if items && items.length
       .items-grid
@@ -32,6 +40,11 @@ block content
 
             if item.description
               p= item.description
+
+            if item.tag_names
+              .tags-row
+                each tagName in item.tag_names.split(', ')
+                  span.tag-badge= tagName
 
             a.btn(href=`/items/${item.listing_id}`) View Details
     else
