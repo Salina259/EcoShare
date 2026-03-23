@@ -27,6 +27,21 @@ SET time_zone = "+00:00";
 -- Table structure for table `test_table`
 --
 
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  email VARCHAR(100)
+);
+
+CREATE TABLE items (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(100),
+  description TEXT,
+  category VARCHAR(50),
+  owner_id INT,
+  FOREIGN KEY (owner_id) REFERENCES users(id)
+);
+
 CREATE TABLE `test_table` (
   `id` int NOT NULL,
   `name` varchar(512) NOT NULL
@@ -35,6 +50,13 @@ CREATE TABLE `test_table` (
 --
 -- Dumping data for table `test_table`
 --
+INSERT INTO users (name, email) VALUES
+('John', 'john@email.com'),
+('Alice', 'alice@email.com');
+
+INSERT INTO items (title, description, category, owner_id) VALUES
+('Bike', 'Good condition bike', 'Transport', 1),
+('Laptop', 'Used laptop', 'Electronics', 2);
 
 INSERT INTO `test_table` (`id`, `name`) VALUES
 (1, 'Lisa'),
