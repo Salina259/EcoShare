@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1.page-title User Profile
+
+  .card
+    h2 #{user.name}
+
+    .info-row
+      strong User ID:
+      |  #{user.user_id}
+
+    .info-row
+      strong Email:
+      |  #{user.email}
+
+    .info-row
+      strong Role:
+      |  #{user.role}
+
+    .info-row
+      strong Joined:
+      |  #{new Date(user.created_at).toDateString()}
+
+  a.button(href='/users') Back to Users List
