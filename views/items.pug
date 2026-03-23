@@ -33,13 +33,6 @@ block content
           strong Owner Email:
           |  #{item.owner_email || 'N/A'}
 
-        if tags && tags.length
-          p
-            strong Tags:
-          .tags-row
-            each tag in tags
-              span.tag-badge= tag.name
-
         button.btn(type='button') Request Item
 
     a.back-link(href='/listings') ← Back to Listings
