@@ -1,35 +1,25 @@
-//- views/users.pug
-//- Users list page
-//- This page shows all users in card format and links to each profile
-
 extends layout
 
 block content
-  h1.page-title Users List
-  p.page-subtitle Browse all registered users in the Eco Share community.
+  h1.page-title User Profile
 
-  if users && users.length > 0
-    .user-grid
-      each user in users
-        .card
-          h2 #{user.first_name} #{user.last_name}
+  .card
+    h2 #{user.name}
 
-          .info-row
-            strong Email:
-            |  #{user.email}
+    .info-row
+      strong User ID:
+      |  #{user.user_id}
 
-          .info-row
-            strong Mobile:
-            |  #{user.mobile}
+    .info-row
+      strong Email:
+      |  #{user.email}
 
-          .info-row
-            strong Location:
-            |  #{user.location}
+    .info-row
+      strong Role:
+      |  #{user.role}
 
-          span.tag #{user.location}
+    .info-row
+      strong Joined:
+      |  #{new Date(user.created_at).toDateString()}
 
-          //- Link to that individual user profile page
-          a.button(href=`/users/${user.id}`) View Profile
-  else
-    .card
-      p No users found.
+  a.button(href='/users') Back to Users List

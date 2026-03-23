@@ -1,75 +1,58 @@
-// routes/users.js
+// app/users.js
 
 const express = require('express');
 const router = express.Router();
-
-// Temporary mock data for Sprint 3.
-// Later, you can replace this with MySQL queries.
-const users = [
-  {
-    id: 1,
-    first_name: 'Salina',
-    last_name: 'Gurung',
-    email: 'salina@example.com',
-    mobile: '07111111111',
-    location: 'Greenford',
-    bio: 'Interested in sharing household items and books.'
-  },
-  {
-    id: 2,
-    first_name: 'Nirjala',
-    last_name: 'Rai',
-    email: 'nirjala@example.com',
-    mobile: '07222222222',
-    location: 'Greenford',
-    bio: 'Enjoys borrowing study materials and small appliances.'
-  },
-  {
-    id: 3,
-    first_name: 'Hira',
-    last_name: 'Magar',
-    email: 'hira@example.com',
-    mobile: '07333333333',
-    location: 'Southall',
-    bio: 'Interested in electronics, tools, and community sharing.'
-  },
-  {
-    id: 4,
-    first_name: 'Aayush',
-    last_name: 'Shrestha',
-    email: 'aayush@example.com',
-    mobile: '07444444444',
-    location: 'Ealing',
-    bio: 'Likes sharing sports equipment and useful everyday items.'
-  }
-];
-
+const db = require('../services/db');
 // GET /users
-// Show all users in a list page
-router.get('/', (req, res) => {
-  res.render('users', {
-    title: 'Users List',
-    users: users
-  });
+// Fetch all users from MySQL
+router.get('/', async (req, res) => {
+  try {
+    const sql = `
+      SELECT user_id, name, email, role, created_at 
+      FROM users
+    `;
+
+    const users = await db.query(sql);
+
+    res.render('users', {
+      title: 'Users List',
+      users: users
+    });
+
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    res.status(500).send('Error loading users');
+  }
 });
 
+
 // GET /users/:id
-// Show a single user's profile page
-router.get('/:id', (req, res) => {
-  const userId = parseInt(req.params.id, 10);
+// Fetch single user by ID
+router.get('/:id', async (req, res) => {
+  try {
+    const userId = req.params.id;
 
-  // Find one user by id
-  const user = users.find(u => u.id === userId);
+    const sql = `
+      SELECT user_id, name, email, role, created_at 
+      FROM users 
+      WHERE user_id = ?
+    `;
 
-  // If user does not exist, return 404
-  if (!user) {
-    return res.status(404).send('User not found');
+    const result = await db.query(sql, [userId]);
+
+    if (result.length === 0) {
+      return res.status(404).send('User not found');
+    }
+
+    res.render('user-page', {
+      title: 'User Profile',
+      user: result[0]
+    });
+
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    res.status(500).send('Error loading user');
   }
-
-  res.render('user-page', {
-    title: 'User Profile',
-    user: user
-  });
 });
 
 module.exports = router;
