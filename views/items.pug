@@ -9,6 +9,11 @@ block content
       .detail-right
         h2= item.title
 
+        if tags && tags.length
+          .tag-row
+            each tagName in tags
+              a.tag-badge(href=`/listings?tag=${encodeURIComponent(tagName)}`)= tagName
+
         p
           strong Category:
           |  #{item.category_name || 'N/A'}

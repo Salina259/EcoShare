@@ -1,0 +1,49 @@
+extends layout
+
+block content
+  section.listing-form-page
+    h2.page-title List a new item
+
+    if error
+      p.form-error= error
+
+    form.listing-form(method='POST', action='/listings/new')
+      label
+        span Title *
+        input(type='text', name='title', value=form.title, required)
+
+      label
+        span Description
+        textarea(name='description', rows='4')= form.description || ''
+
+      label
+        span Availability
+        input(type='text', name='availability', value=form.availability, placeholder='e.g. Weekends')
+
+      label
+        span Status
+        input(type='text', name='status', value=form.status || 'available', placeholder='available')
+
+      label
+        span Category
+        select(name='category_id')
+          option(value='') — None —
+          each cat in categories
+            option(value=cat.category_id, selected=(String(cat.category_id) === String(form.category_id)))= cat.name
+
+      label
+        span Owner *
+        select(name='user_id', required)
+          option(value='') — Select user —
+          each u in users
+            option(value=u.user_id, selected=(String(u.user_id) === String(form.user_id)))= u.name
+
+      label
+        span Tags
+        input(type='text', name='tags', value=form.tags, placeholder='comma-separated, e.g. bike, outdoor, free')
+
+      p.form-hint Separate multiple tags with commas. New tags are created automatically.
+
+      button.btn(type='submit') Publish listing
+
+    a.back-link(href='/listings') ← Back to listings

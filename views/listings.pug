@@ -4,6 +4,16 @@ block content
   section.listings-page
     h2.page-title Browse Items
 
+    .listings-toolbar
+      a.btn(href='/listings/new') + List an item
+
+    if allTags && allTags.length
+      .tag-filter
+        span.tag-filter-label Filter by tag:
+        a.tag-badge.tag-badge-clear(href='/listings', class=!activeTag ? 'is-active' : '') All
+        each t in allTags
+          a.tag-badge(href=`/listings?tag=${encodeURIComponent(t.name)}`, class=(activeTag === t.name) ? 'is-active' : '')= t.name
+
     .search-bar
       input(type='text', placeholder='Search items...')
       button(type='button') Search
@@ -13,6 +23,11 @@ block content
         each item in items
           .item-card
             h3= item.title
+
+            if item.tags && item.tags.length
+              .tag-row
+                each tagName in item.tags
+                  a.tag-badge.tag-badge-small(href=`/listings?tag=${encodeURIComponent(tagName)}`)= tagName
 
             p
               strong Category:
@@ -35,4 +50,7 @@ block content
 
             a.btn(href=`/items/${item.listing_id}`) View Details
     else
-      p No items available.
+      if activeTag
+        p No items match this filter.
+      else
+        p No items available.

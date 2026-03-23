@@ -1,88 +1,110 @@
--- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
---
--- Host: db
--- Generation Time: Oct 30, 2022 at 09:54 AM
--- Server version: 8.0.24
--- PHP Version: 7.4.20
+-- EcoShare / SD2 database schema
+-- Used by Docker MySQL init (docker-entrypoint-initdb.d).
+-- Tables are created in the database set by MYSQL_DATABASE.
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `sd2-db`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `test_table`
---
+-- ---------------------------------------------------------------------------
+-- Core tables (used by listings and users routes)
+-- ---------------------------------------------------------------------------
 
 CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100),
-  email VARCHAR(100)
-);
+  user_id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  role VARCHAR(50) DEFAULT 'member',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (user_id),
+  UNIQUE KEY uq_users_email (email)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE items (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(100),
+CREATE TABLE categories (
+  category_id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(100) NOT NULL,
+  PRIMARY KEY (category_id),
+  UNIQUE KEY uq_categories_name (name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE listings (
+  listing_id INT NOT NULL AUTO_INCREMENT,
+  title VARCHAR(200) NOT NULL,
   description TEXT,
-  category VARCHAR(50),
-  owner_id INT,
-  FOREIGN KEY (owner_id) REFERENCES users(id)
-);
+  availability VARCHAR(100) DEFAULT NULL,
+  status VARCHAR(50) DEFAULT 'available',
+  category_id INT DEFAULT NULL,
+  user_id INT NOT NULL,
+  PRIMARY KEY (listing_id),
+  KEY idx_listings_category (category_id),
+  KEY idx_listings_user (user_id),
+  CONSTRAINT fk_listings_category
+    FOREIGN KEY (category_id) REFERENCES categories (category_id)
+    ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT fk_listings_user
+    FOREIGN KEY (user_id) REFERENCES users (user_id)
+    ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE `test_table` (
-  `id` int NOT NULL,
-  `name` varchar(512) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- ---------------------------------------------------------------------------
+-- Tags (global) and listing ↔ tag association
+-- ---------------------------------------------------------------------------
 
---
--- Dumping data for table `test_table`
---
-INSERT INTO users (name, email) VALUES
-('John', 'john@email.com'),
-('Alice', 'alice@email.com');
+CREATE TABLE tags (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(100) NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY uq_tags_name (name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO items (title, description, category, owner_id) VALUES
-('Bike', 'Good condition bike', 'Transport', 1),
-('Laptop', 'Used laptop', 'Electronics', 2);
+CREATE TABLE listing_tags (
+  listing_id INT NOT NULL,
+  tag_id INT NOT NULL,
+  PRIMARY KEY (listing_id, tag_id),
+  CONSTRAINT fk_listing_tags_listing
+    FOREIGN KEY (listing_id) REFERENCES listings (listing_id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT fk_listing_tags_tag
+    FOREIGN KEY (tag_id) REFERENCES tags (id)
+    ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `test_table` (`id`, `name`) VALUES
-(1, 'Lisa'),
-(2, 'Kimia');
+-- ---------------------------------------------------------------------------
+-- Legacy test table (used by /db_test route)
+-- ---------------------------------------------------------------------------
 
---
--- Indexes for dumped tables
---
+CREATE TABLE test_table (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(512) NOT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Indexes for table `test_table`
---
-ALTER TABLE `test_table`
-  ADD PRIMARY KEY (`id`);
+SET FOREIGN_KEY_CHECKS = 1;
 
---
--- AUTO_INCREMENT for dumped tables
---
+-- ---------------------------------------------------------------------------
+-- Seed data
+-- ---------------------------------------------------------------------------
 
---
--- AUTO_INCREMENT for table `test_table`
---
-ALTER TABLE `test_table`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-COMMIT;
+INSERT INTO users (name, email, role) VALUES
+  ('John', 'john@email.com', 'member'),
+  ('Alice', 'alice@email.com', 'member');
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+INSERT INTO categories (name) VALUES
+  ('Transport'),
+  ('Electronics'),
+  ('Furniture');
+
+INSERT INTO listings (title, description, availability, status, category_id, user_id) VALUES
+  ('City Bike', 'Good condition commuter bike', 'Weekends', 'available', 1, 1),
+  ('Used Laptop', 'Used laptop, battery OK', 'Evenings', 'available', 2, 2);
+
+INSERT INTO tags (name) VALUES
+  ('bicycle'),
+  ('outdoors'),
+  ('computer');
+
+INSERT INTO listing_tags (listing_id, tag_id) VALUES
+  (1, 1),
+  (1, 2),
+  (2, 3);
+
+INSERT INTO test_table (name) VALUES ('Lisa'), ('Kimia');
