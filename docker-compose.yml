@@ -1,41 +1,28 @@
-version: "3.8"
+version: '3.3'
 services:
-  app:
+  web:
     build:
-      context: .
-    container_name: ecoshare-app
-    env_file:
-      - ./.env
-    command: npm start
-    ports:
-      - "3000:3000"
+      context: ./
     volumes:
       - .:/src
+    command: supervisor -e  'js,pug,html' index.js
+    ports:
+      - "3000:3000"
     depends_on:
       - db
-
   db:
-    image: mysql:8.0
-    container_name: ecoshare-db
+    image: mysql
     restart: always
     env_file:
       - ./.env
     ports:
-      - "3306:3306"
+      - "3308:3306"
     volumes:
-      - mysql_data:/var/lib/mysql
-      - ./sd2-db.sql:/docker-entrypoint-initdb.d/sd2-db.sql:ro
-
+      - ./db:/var/lib/mysql
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
-    container_name: ecoshare-phpmyadmin
     restart: always
     env_file:
       - ./.env
-    depends_on:
-      - db
     ports:
       - "8081:80"
-
-volumes:
-  mysql_data:

@@ -30,17 +30,7 @@ router.get("/:id", async (req, res) => {
       return res.status(404).send("Item not found");
     }
 
-    const tagsSql = `
-      SELECT tags.id, tags.name
-      FROM listing_tags
-      INNER JOIN tags ON listing_tags.tag_id = tags.id
-      WHERE listing_tags.listing_id = ?
-      ORDER BY tags.name ASC
-    `;
-
-    const tags = await db.query(tagsSql, [itemId]);
-
-    res.render("items", { item: results[0], tags });
+    res.render("items", { item: results[0] });
   } catch (err) {
     console.error("Error fetching item:", err);
     res.status(500).send("Database error");
