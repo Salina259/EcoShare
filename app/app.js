@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../static")));
 
 app.set("view engine", "pug");
-app.set("views", path.join(__dirname, "../views"));
+app.set("views", path.join(__dirname, "views"));
 
 app.use("/items", itemsRoutes);
 app.use("/listings", listingsRouter);
