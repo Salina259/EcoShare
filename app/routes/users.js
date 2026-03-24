@@ -1,14 +1,29 @@
-// app/users.js
-
 const express = require('express');
 const router = express.Router();
 const db = require('../services/db');
+
+// Wait until the database is ready (important for Docker)
+async function waitForDB(retries = 5) {
+  while (retries) {
+    try {
+      await db.query('SELECT 1');
+      return;
+    } catch (err) {
+      console.log('Waiting for DB...');
+      await new Promise(res => setTimeout(res, 2000));
+      retries--;
+    }
+  }
+  throw new Error('Database not ready');
+}
+
 // GET /users
-// Fetch all users from MySQL
 router.get('/', async (req, res) => {
   try {
+    await waitForDB();
+
     const sql = `
-      SELECT user_id, name, email, role, created_at 
+      SELECT user_id, name, email, role, created_at
       FROM users
     `;
 
@@ -25,16 +40,16 @@ router.get('/', async (req, res) => {
   }
 });
 
-
 // GET /users/:id
-// Fetch single user by ID
 router.get('/:id', async (req, res) => {
   try {
+    await waitForDB();
+
     const userId = req.params.id;
 
     const sql = `
-      SELECT user_id, name, email, role, created_at 
-      FROM users 
+      SELECT user_id, name, email, role, created_at
+      FROM users
       WHERE user_id = ?
     `;
 
