@@ -4,12 +4,13 @@ block content
   .container
     h2 Listings
 
-    // SEARCH BAR (optional UI)
+    // SEARCH BAR (UI only for now)
     form(action="/listings", method="GET")
       input(type="text", name="search", placeholder="Search items...")
       button(type="submit") Search
 
-    if items && items.length
+    // CHECK IF ITEMS EXIST
+    if items && items.length > 0
       .grid
         each item in items
           .card
@@ -31,5 +32,6 @@ block content
               p= item.description
 
             a.btn(href=`/listings/${item.listing_id}`) View Details
+
     else
       p No items available

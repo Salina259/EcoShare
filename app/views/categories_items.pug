@@ -2,12 +2,12 @@ extends layout
 
 block content
   .container
-    h2 Listings
+    h2 #{category_name}
 
-    // SEARCH BAR (optional UI)
-    form(action="/listings", method="GET")
-      input(type="text", name="search", placeholder="Search items...")
-      button(type="submit") Search
+    a.btn(href="/categories") ← Back to Categories
+
+    br
+    br
 
     if items && items.length
       .grid
@@ -16,20 +16,16 @@ block content
             h3= item.title
 
             p
-              strong Category:
-              |  #{item.category_name}
-
-            p
               strong Owner:
               |  #{item.owner_name}
+
+            if item.description
+              p= item.description
 
             p
               strong Status:
               |  #{item.status}
 
-            if item.description
-              p= item.description
-
             a.btn(href=`/listings/${item.listing_id}`) View Details
     else
-      p No items available
+      p No items in this category

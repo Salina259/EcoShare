@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title EcoShare
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
+    // Google Font
+    link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap", rel="stylesheet")
+
+    // CSS
+    link(rel="stylesheet", href="/style.css")
+
+  body
+    // NAVBAR
+    header.navbar
+      h1.logo EcoShare
+
+      nav
+        a(href="/") Home
+        a(href="/listings") Listings
+        a(href="/users") Users
+        a(href="/categories") Categories
+        a(href="/add-item") Add Item
+        a(href="/login") Login
+
+    // MAIN CONTENT
+    main.container
+      block content
+
+    // FOOTER
+    footer.footer
+      p © 2026 EcoShare | Sharing Community 🌱

@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  .container
+    h2 Sign Up
+
+    form(action="/signup", method="POST")
+      .card
+        label Name
+        input(type="text", name="name", required)
+
+        label Email
+        input(type="email", name="email", required)
+
+        label Password
+        input(type="password", name="password", required)
+
+        br
+        button.btn(type="submit") Create Account
+
+    p
+      | Already have an account?
+      a(href="/login") Login here

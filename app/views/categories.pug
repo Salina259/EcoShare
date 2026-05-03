@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  .container
+    h2 Categories
+
+    if categories && categories.length
+      .grid
+        each cat in categories
+          .card
+            h3= cat.name
+
+            p Browse items under this category
+
+            a.btn(href=`/categories/${cat.category_id}`) View Items
+    else
+      p No categories available

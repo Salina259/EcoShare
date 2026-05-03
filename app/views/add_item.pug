@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  .container
+    h2 Add New Item
+
+    form(action="/add-item", method="POST")
+      
+      .card
+        label Title
+        input(type="text", name="title", required)
+
+        label Description
+        textarea(name="description")
+
+        label Category
+        select(name="category_id")
+          each cat in categories
+            option(value=cat.category_id)= cat.name
+
+        label Availability
+        input(type="text", name="availability")
+
+        br
+
+        button.btn(type="submit") Add Item

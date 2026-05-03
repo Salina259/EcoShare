@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  .container
+    h2 Community Members
+
+    if users && users.length
+      .grid
+        each user in users
+          .card
+            h3= user.name
+
+            p
+              strong Email:
+              |  #{user.email}
+
+            p
+              strong Role:
+              |  #{user.role || 'user'}
+
+            a.btn(href=`/users/${user.user_id}`) View Profile
+    else
+      p No users available

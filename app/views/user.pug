@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  .container
+    .card
+      h2= user.name
+
+      p
+        strong Email:
+        |  #{user.email}
+
+      p
+        strong Role:
+        |  #{user.role || 'user'}
+
+      hr
+
+      h3 User Listings
+
+      if listings && listings.length
+        .grid
+          each item in listings
+            .card
+              h4= item.title
+
+              if item.description
+                p= item.description
+
+              p
+                strong Status:
+                |  #{item.status}
+
+              a.btn(href=`/listings/${item.listing_id}`) View Item
+      else
+        p This user has no listings
+
+      br
+      a.btn(href="/users") ← Back to Users
