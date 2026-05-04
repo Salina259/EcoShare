@@ -65,7 +65,7 @@ CREATE TABLE requests (
     listing_id INT,
     requester_id INT,
     status VARCHAR(50) DEFAULT 'pending',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     FOREIGN KEY (listing_id) REFERENCES listings(listing_id),
     FOREIGN KEY (requester_id) REFERENCES users(user_id)
