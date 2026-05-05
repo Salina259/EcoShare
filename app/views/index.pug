@@ -1,1 +1,48 @@
 
+extends layout
+
+block content
+  .container
+    // HERO SECTION
+    h1 Welcome to EcoShare 🌱
+
+    p Share items, reduce waste, and help your community grow sustainably.
+
+    br
+
+    // MAIN ACTION BUTTONS
+    a.btn(href="/listings") Browse Listings
+    a.btn(href="/add-item") Add Item
+    a.btn(href="/categories") Categories
+
+    hr
+
+    // FEATURE SECTION
+    h2 What You Can Do
+
+    ul
+      li Share items you don’t need
+      li Request items from others
+      li Connect with community members
+      li Reduce environmental waste ♻️
+
+    hr
+
+    // QUICK PREVIEW SECTION (OPTIONAL)
+    h2 Explore
+
+    .grid
+      .card
+        h3 Listings
+        p Browse all available items
+        a.btn(href="/listings") Go
+
+      .card
+        h3 Categories
+        p Find items by category
+        a.btn(href="/categories") Go
+
+      .card
+        h3 Users
+        p View community members
+        a.btn(href="/users") Go
