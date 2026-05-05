@@ -1,1 +1,31 @@
+extends layout
 
+block content
+  .container
+    h2 #{category_name}
+
+    a.btn(href="/categories") ← Back to Categories
+
+    br
+    br
+
+    if items && items.length
+      .grid
+        each item in items
+          .card
+            h3= item.title
+
+            p
+              strong Owner:
+              |  #{item.owner_name}
+
+            if item.description
+              p= item.description
+
+            p
+              strong Status:
+              |  #{item.status}
+
+            a.btn(href=`/listings/${item.listing_id}`) View Details
+    else
+      p No items in this category
