@@ -1,38 +1,37 @@
 extends layout
 
 block content
-  section.listings-page
-    h2.page-title Browse Items
+  .container
+    h2 Listings
 
-    .search-bar
-      input(type='text', placeholder='Search items...')
-      button(type='button') Search
+    // SEARCH BAR (UI only for now)
+    form(action="/listings", method="GET")
+      input(type="text", name="search", placeholder="Search items...")
+      button(type="submit") Search
 
-    if items && items.length
-      .items-grid
+    // CHECK IF ITEMS EXIST
+    if items && items.length > 0
+      .grid
         each item in items
-          .item-card
+          .card
             h3= item.title
 
             p
               strong Category:
-              |  #{item.category_name || 'N/A'}
-
-            p
-              strong Availability:
-              |  #{item.availability || 'N/A'}
-
-            p
-              strong Status:
-              |  #{item.status || 'N/A'}
+              |  #{item.category_name}
 
             p
               strong Owner:
-              |  #{item.owner_name || 'N/A'}
+              |  #{item.owner_name}
+
+            p
+              strong Status:
+              |  #{item.status}
 
             if item.description
               p= item.description
 
-            a.btn(href=`/items/${item.listing_id}`) View Details
+            a.btn(href=`/listings/${item.listing_id}`) View Details
+
     else
-      p No items available.
+      p No items available
