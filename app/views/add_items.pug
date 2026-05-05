@@ -1,38 +1,26 @@
 extends layout
 
 block content
-  section.item-detail-page
-    .detail-card
-      .detail-left
-        .image-placeholder Item Image
+  .container
+    h2 Add New Item
 
-      .detail-right
-        h2= item.title
+    form(action="/add-item", method="POST")
+      
+      .card
+        label Title
+        input(type="text", name="title", required)
 
-        p
-          strong Category:
-          |  #{item.category_name || 'N/A'}
+        label Description
+        textarea(name="description")
 
-        p
-          strong Availability:
-          |  #{item.availability || 'N/A'}
+        label Category
+        select(name="category_id")
+          each cat in categories
+            option(value=cat.category_id)= cat.name
 
-        p
-          strong Status:
-          |  #{item.status || 'N/A'}
+        label Availability
+        input(type="text", name="availability")
 
-        p
-          strong Description:
-          |  #{item.description || 'No description available'}
+        br
 
-        p
-          strong Owner:
-          |  #{item.owner_name || 'N/A'}
-
-        p
-          strong Owner Email:
-          |  #{item.owner_email || 'N/A'}
-
-        button.btn(type='button') Request Item
-
-    a.back-link(href='/listings') ← Back to Listings
+        button.btn(type="submit") Add Item
