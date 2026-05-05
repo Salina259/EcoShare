@@ -1,14 +1,17 @@
 extends layout
 
 block content
-  h2.page-title Categories
+  .container
+    h2 Categories
 
-  .items-grid
-    .item-card
-      h3 Books
-    .item-card
-      h3 Clothing
-    .item-card
-      h3 Electronics
-    .item-card
-      h3 Household
+    if categories && categories.length
+      .grid
+        each cat in categories
+          .card
+            h3= cat.name
+
+            p Browse items under this category
+
+            a.btn(href=`/categories/${cat.category_id}`) View Items
+    else
+      p No categories available
