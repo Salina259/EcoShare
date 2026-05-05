@@ -1,28 +1,23 @@
 extends layout
 
 block content
-  h1.page-title Users List
-  p.page-subtitle Eco Share registered users
+  .container
+    h2 Community Members
 
-  if users.length > 0
-    .user-grid
-      each user in users
-        .card
-          h2.card-title #{user.name}
+    if users && users.length
+      .grid
+        each user in users
+          .card
+            h3= user.name
 
-          .info-row
-            strong Email:
-            |  #{user.email}
+            p
+              strong Email:
+              |  #{user.email}
 
-          .info-row
-            strong Role:
-            |  #{user.role}
+            p
+              strong Role:
+              |  #{user.role || 'user'}
 
-          .info-row
-            strong Joined:
-            |  #{new Date(user.created_at).toDateString()}
-
-          a.button(href=`/users/${user.user_id}`) View Profile
-  else
-    .card
-      p No users found
+            a.btn(href=`/users/${user.user_id}`) View Profile
+    else
+      p No users available
